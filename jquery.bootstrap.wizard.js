@@ -23,9 +23,12 @@ var bootstrapWizardCreate = function(element, options) {
 	var $activeTab = null;
 	var $navigation = null;
 
-	this.rebindClick = function(selector, fn)
+	this.rebindClick = function(selector, fn, bind)
 	{
-		selector.unbind('click', fn).bind('click', fn);
+		selector.unbind('click', fn);
+		if(!selector.hasClass('disabled') && selector.is(':enabled') && selector.is(':visible')){
+			selector.bind('click', fn);
+		}
 	}
 
 	this.fixNavigationButtons = function() {
